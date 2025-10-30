@@ -1,0 +1,46 @@
+//Знайти номер першого мінімального значення серед додатних елементів,
+//розташованих правіше першого елемента, рівного нулю.
+#include <stdio.h>
+#include <iostream>
+#include <limits>
+#include <vector>
+using namespace std;
+int main()
+{
+   int N;
+   cout<<"Розмір масиву N: ";
+   cin>>N;
+   
+   vector<int> A(N);
+   cout<<"Елементи масиву N: ";
+   
+   for(int i=0; i < N; ++i){
+       cin>>A[i];
+   }
+   
+   int firstzero=-1;
+   for(int i=0; i<N; ++i){
+       if(A[i]==0){
+           firstzero=i;
+           break;
+       }
+   }
+   
+   int minA=std::numeric_limits<int>::max();
+   int minindex=-1;
+   
+   for(int i=firstzero+1; i<N; ++i){
+       if(A[i]>0 && A[i]<minA){
+           minA=A[i];
+           minindex=i;
+       }
+   }
+   if(minindex==-1){
+       cout<<"Після першого нуля немає додатніх значеннь ";
+   }else{
+       cout<<"Номер першого мінімального значення після першого нуля: "<<minindex<<"\n";
+       cout<<"Значення цього елемента: "<<A[minindex]<<"\n";
+   }
+
+    return 0;
+}
